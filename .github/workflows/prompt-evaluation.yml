@@ -1,0 +1,35 @@
+name: Prompt evaluation contract
+on:
+  pull_request:
+    paths: ['prompts/**', 'fixtures/**', 'data/**']
+permissions:
+  contents: read
+jobs:
+  fixture-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.lock
+      - run: python -m pip install --no-deps --no-build-isolation .
+      - name: Verify prompt-to-recording identity and regression gates
+        run: |
+          modelguard demo --output artifacts/prompt-contract
+          python scripts/assert_demo.py artifacts/prompt-contract/demo.json
+      - name: Add honest fixture summary to run
+        if: always()
+        run: |
+          if [ -f artifacts/prompt-contract/regression/summary.md ]; then
+            cat artifacts/prompt-contract/regression/summary.md >> "$GITHUB_STEP_SUMMARY"
+            echo 'This is a recorded fixture contract test, not a live quality approval.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: prompt-contract-report
+          path: artifacts/prompt-contract/
+          if-no-files-found: error
