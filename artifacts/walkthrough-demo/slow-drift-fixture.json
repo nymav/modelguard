@@ -1,0 +1,32 @@
+{
+  "provenance": "scripted system-test sequence; not live measurements",
+  "thresholds": {
+    "warn_drop": 0.07,
+    "critical_drop": 0.15,
+    "drift_window": 7,
+    "drift_floor": 0.93
+  },
+  "individual_step_statuses": [
+    "pass",
+    "pass",
+    "pass",
+    "pass",
+    "pass",
+    "pass"
+  ],
+  "result": {
+    "status": "warning",
+    "runs": 7,
+    "moving_average": 0.9196428571428571,
+    "floor": 0.93,
+    "run_ids": [
+      "slow-drift-fixture-0",
+      "slow-drift-fixture-1",
+      "slow-drift-fixture-2",
+      "slow-drift-fixture-3",
+      "slow-drift-fixture-4",
+      "slow-drift-fixture-5",
+      "slow-drift-fixture-6"
+    ]
+  }
+}
