@@ -126,6 +126,14 @@ class EndToEndGate(unittest.TestCase):
             result=asyncio.run(evaluate_pair(repo,base,head,'prompts/current.yaml','data/golden.json',output,'test-model','test-judge','not-real',enabled=True,provider_factory=ContractProvider))
             self.assertEqual(result['status'],'critical');self.assertEqual(len(result['regressions']),8)
             self.assertFalse(result['release_evidence']);self.assertTrue((output/'report.html').exists());self.assertTrue((output/'history-points.json').exists())
+            # A new versioned file must compare to the configured baseline, not an unchanged file.
+            shutil.copyfile(ROOT/'prompts/v1.yaml',repo/'prompts/current.yaml')
+            shutil.copyfile(ROOT/'prompts/v2.yaml',repo/'prompts/new.yaml');git('add','.');git('commit','-qm','unit new prompt version')
+            versionhead=git('rev-parse','HEAD')
+            version_result=asyncio.run(evaluate_pair(repo,base,versionhead,'prompts/current.yaml','data/golden.json',output,'test-model','test-judge','not-real',enabled=True,provider_factory=ContractProvider))
+            self.assertEqual(version_result['source']['candidate_prompt'],'prompts/new.yaml')
+            self.assertEqual(version_result['source']['baseline_prompt'],'prompts/current.yaml')
+            self.assertEqual(version_result['status'],'critical')
             (repo/'data/golden.json').write_text(data.model_dump_json()+'\n');git('add','.');git('commit','-qm','unit gold changed');newhead=git('rev-parse','HEAD')
             with self.assertRaisesRegex(GuardError,'Golden dataset changed'):
                 asyncio.run(evaluate_pair(repo,base,newhead,'prompts/current.yaml','data/golden.json',output,'test-model','test-judge','not-real',enabled=True,provider_factory=ContractProvider))
