@@ -56,7 +56,9 @@ secret-setting form or `gh secret set NAME --repo nymav/modelguard` accepts them
 without embedding them in source. Setting variables is not performed implicitly.
 
 Commit reviewed gold before evaluating a prompt PR. The workflow uses the base
-commit's trusted evaluator and dependencies. Candidate code is never installed;
+commit's trusted evaluator and dependencies. A single changed YAML prompt is selected automatically; a new versioned file is
+compared with the configured base prompt. Multiple changed prompts block instead
+of silently evaluating the wrong file. Candidate code is never installed;
 only bounded YAML/JSON Git blobs are read. Changing gold in the same PR blocks
 comparison and requires a separately reviewed dataset/baseline update. Forks
 receive no API secrets or PR-write operation and fail readiness instead of being
