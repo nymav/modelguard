@@ -1,0 +1,48 @@
+name: Validate ModelGuard
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -r requirements.lock
+      - run: python -m pip install --no-deps --no-build-isolation .
+      - name: Unit and integration tests without paid APIs
+        run: python -m unittest discover -s tests -v
+      - name: Exercise regression, recovery and slow drift
+        run: |
+          modelguard demo --output artifacts/ci-demo
+          python scripts/assert_demo.py artifacts/ci-demo/demo.json
+      - name: Build wheel
+        run: python -m pip wheel --no-deps --no-build-isolation -w artifacts/dist .
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: modelguard-validation-${{ matrix.python }}
+          path: artifacts/ci-demo/
+          if-no-files-found: error
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - run: docker build -t modelguard-ci .
+      - name: Offline container demo, network disabled
+        run: docker run --rm --network none --read-only --tmpfs /results:rw,uid=10001 --tmpfs /tmp modelguard-ci
+      - name: Container suite on read-only source
+        run: >-
+          docker run --rm --network none --read-only --tmpfs /tmp
+          --mount type=bind,src=${{ github.workspace }},dst=/validation,readonly
+          --workdir /validation --entrypoint python modelguard-ci
+          -m unittest discover -s tests -q
