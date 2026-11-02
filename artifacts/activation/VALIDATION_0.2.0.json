@@ -1,0 +1,52 @@
+{
+  "project": "P01",
+  "version": "0.2.0",
+  "recorded_at": "2026-11-03T02:14:52.304817+05:30",
+  "host_python": "3.9.6",
+  "host_tests": 93,
+  "docker_tests": 93,
+  "docker_image": "sha256:2e8dc69a5779b96f5d91cd527cb7da7ab2c2c858956a00fc3392fba013819828",
+  "remote_pr": "https://github.com/nymav/modelguard/pull/1",
+  "remote_comment": "https://github.com/nymav/modelguard/pull/1#issuecomment-6587789932",
+  "bot_upsert": "same comment ID observed after two real workflow runs; exactly one marker comment",
+  "live_check": "blocked as expected; no API key, explicit models or live opt-in",
+  "human_dataset": "not supplied; 64 blank authoring rows, zero real cases reviewed",
+  "slack": "not configured, not delivered",
+  "paid_provider_calls": 0,
+  "private_branch_protection": "GitHub API returned HTTP 403: upgrade plan required; repository kept private",
+  "video": {
+    "path": "output/ModelGuard_P01_Offline_Walkthrough.mp4",
+    "kind": "silent captioned offline evidence walkthrough",
+    "seconds": 180,
+    "decode": "passed",
+    "not_a_live_Loom_recording": true
+  },
+  "remaining": [
+    "Human-authored/reviewed golden data",
+    "Live OpenAI classifier/judge validation",
+    "Actual Slack delivery",
+    "Eligible GitHub plan for required checks on private repo",
+    "Live walkthrough after activation"
+  ],
+  "module_sha256": {
+    "src/modelguard/__init__.py": "7651ccead2268806f320fb56d122e8b226d5c471a7b99f1dd0d0b899c8517f5d",
+    "src/modelguard/authoring.py": "378a02886e80574829940185a1cad7a98e0b228d93843f6369ba5d6f9bc90951",
+    "src/modelguard/ci.py": "3f9bb4c451747953d2c75e3eb0b9fab9262c11002c9217b99f34f14fe804038a",
+    "src/modelguard/cli.py": "4bcade1eaee92c9c5ba9872d36a750c8b0af9f4a5a94c14ede3bd2f757ba2c4a",
+    "src/modelguard/comparison.py": "8e8e038627cc536b34703a3f5b098fb4017c92d245aad81bbf94752affd5ca8a",
+    "src/modelguard/config.py": "d5bde571afb10b9b8f5aeacbb0a81a1d022fba6b3a55cda1f4757fab06df9d47",
+    "src/modelguard/dataset.py": "570551125125694ed83b2e4d09ed08896983f5602c1d9d57a9be8568fea3a6ba",
+    "src/modelguard/demo.py": "b043c05122ac11ab5a6e5b5577f0e51860776a3565077116bc467ee54fdb17e3",
+    "src/modelguard/feature.py": "512f65db4c7a5d9722fb5244d88eb7b826809bb44948240eec918382e7ea0e47",
+    "src/modelguard/github.py": "27cd8ab23d546fa694f7cc849e80c29ee657f7894839ec2f91dedb407916eecc",
+    "src/modelguard/history.py": "71451cd4dea460c2d8c7fe045a21290723e6159b01d3ab087069692c1bba1ec9",
+    "src/modelguard/models.py": "45460e31c7f9c4dafec69040593ae326cec751d30266ce5095a0c1db9dd921aa",
+    "src/modelguard/notifications.py": "5f137d0c837679bd768f9339ad01fe6eeb00988ce229015e1ce49c60b32525a9",
+    "src/modelguard/providers.py": "280dfb5cef313d9424eab1cfd5ebb7b49a9c01105a3def1998e90fad1f78ebdd",
+    "src/modelguard/reporting.py": "87c528c4db0938792e30a5e6edd9b2dde26b9f95d9d4a8a80f27c03db3e268ba",
+    "src/modelguard/runner.py": "1ca5f3547f4988f889affc70212ee0201cd9725936bea270fef858459be5eb1f",
+    "src/modelguard/scoring.py": "1ade93aebfd14b262f60ccbbf80d88629804ddaf53c823e5aa379ba8153dd34c",
+    "src/modelguard/statistics.py": "31d9c05c40ef37660a29588f66f09cce6503aef00bc6c94e55e6142bb3684464",
+    "src/modelguard/store.py": "6ba9d9ccaecf710ec236ba36e524a5ff1a54c06acb37445cfc7756ce5a2aa87f"
+  }
+}
