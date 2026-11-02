@@ -1,8 +1,8 @@
 {
   "comparison": {
     "schema_version": 1,
-    "baseline_id": "9fce2e9e022b43268acc4dea11312111",
-    "candidate_id": "bb01fa8c53a14b598f9d409dbd6851ac",
+    "baseline_id": "3ca513b1605443ad9ced2d614029f45b",
+    "candidate_id": "82b5877059834bf9804cc23551b10c55",
     "status": "pass",
     "delta": 0.125,
     "regressions": [],
@@ -70,13 +70,13 @@
   },
   "drift": {
     "status": "insufficient_history",
-    "runs": 3,
+    "runs": 6,
     "required": 7
   },
   "baseline": {
     "schema_version": 1,
-    "id": "9fce2e9e022b43268acc4dea11312111",
-    "created_at": "2026-11-02T20:08:26.544106+00:00",
+    "id": "3ca513b1605443ad9ced2d614029f45b",
+    "created_at": "2026-11-02T20:13:08.420726+00:00",
     "dataset_hash": "f1879cd0c676070885420e1b75c9eb558d219d0a1c6e4fc8be9eb9b5ffd1f924",
     "dataset_version": "synthetic-system-fixtures-v1",
     "provenance": "synthetic_fixture",
@@ -695,8 +695,8 @@
   },
   "candidate": {
     "schema_version": 1,
-    "id": "bb01fa8c53a14b598f9d409dbd6851ac",
-    "created_at": "2026-11-02T20:08:26.548400+00:00",
+    "id": "82b5877059834bf9804cc23551b10c55",
+    "created_at": "2026-11-02T20:13:08.429849+00:00",
     "dataset_hash": "f1879cd0c676070885420e1b75c9eb558d219d0a1c6e4fc8be9eb9b5ffd1f924",
     "dataset_version": "synthetic-system-fixtures-v1",
     "provenance": "synthetic_fixture",
