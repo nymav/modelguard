@@ -1,0 +1,14 @@
+{
+  "provenance": "synthetic_fixture / recorded responses; no paid requests",
+  "cases": 16,
+  "baseline_pass_rate": 0.8125,
+  "candidate_pass_rate": 0.625,
+  "regressions": 4,
+  "improvements": 1,
+  "gate": "critical",
+  "recovered_pass_rate": 0.9375,
+  "recovery_gate": "pass",
+  "slow_drift_fixture": "warning",
+  "slack_delivery": "not sent; payload saved",
+  "report": "artifacts/walkthrough-demo/regression/report.html"
+}
