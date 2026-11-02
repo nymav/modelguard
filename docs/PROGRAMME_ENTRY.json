@@ -9,7 +9,7 @@
   "version": "0.2.0",
   "tests": 93,
   "docker_tests": 93,
-  "ci": "https://github.com/nymav/modelguard/actions/runs/41516882360",
+  "ci": "https://github.com/nymav/modelguard/actions/runs/41522048405",
   "validation": "/Users/yarra/Documents/Codex/2026-10-06/fix/work/modelguard/artifacts/activation/VALIDATION_0.2.0.json",
   "human_gold_approved": false,
   "paid_provider_validation": false,
