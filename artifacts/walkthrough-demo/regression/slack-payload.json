@@ -1,0 +1,12 @@
+{
+  "text": "ModelGuard critical: 4 regressions; pass rate 81.2% \u2192 62.5%. Source: synthetic_fixture/replay.",
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "plain_text",
+        "text": "ModelGuard critical: 4 regressions; pass rate 81.2% \u2192 62.5%. Source: synthetic_fixture/replay."
+      }
+    }
+  ]
+}
