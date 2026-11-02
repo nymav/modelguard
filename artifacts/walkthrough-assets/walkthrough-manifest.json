@@ -1,0 +1,69 @@
+{
+  "kind": "captioned offline evidence walkthrough",
+  "duration_seconds": 180,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "audio": false,
+  "live_provider_calls": 0,
+  "slack_delivery_performed": false,
+  "pr_comment": "https://github.com/nymav/modelguard/pull/1#issuecomment-6587789932",
+  "chapters": [
+    {
+      "start": 0,
+      "duration": 20,
+      "title": "What this system checks",
+      "image": "chapter-01.png"
+    },
+    {
+      "start": 20,
+      "duration": 20,
+      "title": "Run the actual evaluation path",
+      "image": "chapter-02.png"
+    },
+    {
+      "start": 40,
+      "duration": 20,
+      "title": "Inspect the regression report",
+      "image": "chapter-03.png"
+    },
+    {
+      "start": 60,
+      "duration": 20,
+      "title": "Follow individual failures",
+      "image": "chapter-04.png"
+    },
+    {
+      "start": 80,
+      "duration": 20,
+      "title": "Check a recovery against the same baseline",
+      "image": "chapter-05.png"
+    },
+    {
+      "start": 100,
+      "duration": 20,
+      "title": "Catch a gradual decline",
+      "image": "chapter-06.png"
+    },
+    {
+      "start": 120,
+      "duration": 20,
+      "title": "Verify the real pull-request integration",
+      "image": "chapter-07.png"
+    },
+    {
+      "start": 140,
+      "duration": 20,
+      "title": "Prepare genuine human-reviewed data",
+      "image": "chapter-08.png"
+    },
+    {
+      "start": 160,
+      "duration": 20,
+      "title": "What remains before live activation",
+      "image": "chapter-09.png"
+    }
+  ],
+  "source": "actual local CLI outputs, browser report screenshots and GitHub API evidence"
+}
