@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import sqlite3
+import sys
 from pydantic import ValidationError
 import yaml
 from . import __version__
@@ -38,6 +39,10 @@ def parser():
     base=sub.add_parser('baseline'); base.add_argument('--db',type=Path,default=Path('.run/modelguard.sqlite')); base.add_argument('--run',required=True); base.add_argument('--name',default='production')
     check=sub.add_parser('validate-dataset'); check.add_argument('path',type=Path); check.add_argument('--require-gold',action='store_true')
     notify=sub.add_parser('notify'); notify.add_argument('--payload',type=Path,required=True); notify.add_argument('--send-slack',action='store_true')
+    template=sub.add_parser('dataset-template');template.add_argument('--output',type=Path,required=True);template.add_argument('--count',type=int,default=64)
+    author=sub.add_parser('dataset-import');author.add_argument('--input',type=Path,required=True);author.add_argument('--output',type=Path,required=True);author.add_argument('--version',required=True);author.add_argument('--declare-human-authored',action='store_true')
+    review=sub.add_parser('dataset-review');review.add_argument('--queue',type=Path,required=True);review.add_argument('--reviewer',required=True)
+    freeze=sub.add_parser('dataset-freeze');freeze.add_argument('--queue',type=Path,required=True);freeze.add_argument('--output',type=Path,required=True)
     return p
 
 def emit(value): print(json.dumps(value,allow_nan=False))
@@ -45,6 +50,18 @@ def emit(value): print(json.dumps(value,allow_nan=False))
 def main(argv=None):
     args=parser().parse_args(argv); store=None
     try:
+        if args.command.startswith('dataset-'):
+            from .authoring import authoring_template,import_authoring,review_queue,export_gold
+            if args.command=='dataset-template':
+                authoring_template(args.output,args.count);emit({'created':str(args.output),'rows':args.count,'reviewed':0})
+            elif args.command=='dataset-import':
+                queue=import_authoring(args.input,args.output,args.version,args.declare_human_authored);emit({'cases':len(queue.cases),'status':'awaiting_personal_review'})
+            elif args.command=='dataset-review':
+                if not sys.stdin.isatty():raise GuardError('Human review requires an interactive terminal; piped bulk approvals are refused')
+                queue=review_queue(args.queue,args.reviewer);emit({'cases':len(queue.cases),'reviewed':sum(c.reviewed_by is not None for c in queue.cases)})
+            else:
+                data=export_gold(args.queue,args.output);emit({'frozen':str(args.output),'cases':len(data.cases)})
+            return 0
         if args.command=='demo':
             from .demo import demo
             emit(asyncio.run(demo(args.output))); return 0
