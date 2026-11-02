@@ -48,5 +48,7 @@
     "src/modelguard/scoring.py": "1ade93aebfd14b262f60ccbbf80d88629804ddaf53c823e5aa379ba8153dd34c",
     "src/modelguard/statistics.py": "31d9c05c40ef37660a29588f66f09cce6503aef00bc6c94e55e6142bb3684464",
     "src/modelguard/store.py": "6ba9d9ccaecf710ec236ba36e524a5ff1a54c06acb37445cfc7756ce5a2aa87f"
-  }
+  },
+  "validated_ci": "https://github.com/nymav/modelguard/actions/runs/41522048405",
+  "validated_commit": "3b0f1e7"
 }
