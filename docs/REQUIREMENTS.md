@@ -18,7 +18,7 @@
 | F05-T01 PR integration | Prompt-path fixture check + run summary + artifacts. Live workflow and guarded PR comment upsert implemented; real provider/gold validation pending. GitHub rejects private branch protection on the observed plan (403) |
 | F05-T02 Docker | Nonroot pinned Python image, explicit runtime credentials/budgets, offline validation |
 | F05-T03 onboarding docs | README plus modules, data protocol and operations/limits |
-| F06-T01 Loom walkthrough | **Not recorded.** `WALKTHROUGH.md` provides an honest recording script |
+| F06-T01 Loom walkthrough | Three-minute captioned offline MP4 produced from real execution evidence; live model/received-Slack Loom recording still awaits prerequisites |
 | F06-T02 design explanation | README architecture decision describes dataset identity, practical gates and drift |
 
 “Implemented” means code exists and its bounded tests are recorded separately;
