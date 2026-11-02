@@ -1,0 +1,620 @@
+{
+  "schema_version": 1,
+  "id": "313a97e91e2c41e2a0991433ac80d3e9",
+  "created_at": "2026-11-02T20:08:26.546709+00:00",
+  "dataset_hash": "f1879cd0c676070885420e1b75c9eb558d219d0a1c6e4fc8be9eb9b5ffd1f924",
+  "dataset_version": "synthetic-system-fixtures-v1",
+  "provenance": "synthetic_fixture",
+  "case_hashes": {
+    "bill_duplicate": "90b42bc130acb8705ce4728a360f93187e2145dbde9e6f922d9f2a20aa2cdfe6",
+    "bill_short": "8dc76190da498ad4ed56d24bbc79d513147f1c5fa4421e70ce51c6d7b593a266",
+    "bill_typo": "9a287fe015337f9d5b964e4acc454f52350c71d4b4bc690adfc183a66ab1d692",
+    "bill_mixed": "35f28eadff6f3452860722e51c01bac575217c9d7a96d5bfd09ef6f61ffac487",
+    "tech_crash": "beb8eab8d132f22eb91184adf9761a56d1fd8b28b600b87f648b3e85ea34c9d7",
+    "tech_short": "d633ee77524ac71ffe097bb56787659837a27ab4e375b8ebb56f213204e466b8",
+    "tech_injection": "d3583abb5d2a63034a04861125f4664f85d7dab63ad8732eb4619cdae57bce9f",
+    "tech_sarcasm": "5d2b0f2cc466c20b0687004ee90032dd69a3ed4855ce9cac05209b4d524220e3",
+    "acct_locked": "165c32e8c46e818ecef8442dd276e7c5c17711126ccf56dfcacdce84f5d44b5a",
+    "acct_email": "565631fbe3319f956eabaa7684cebbf99c2cf4d05cbfc529f9036686a0fbeba1",
+    "acct_mixed": "426d3188ec3af023995327c925d56f560f57c4d1e8c5aef66addc2650dc8c9f0",
+    "acct_cancel": "d48fa218b7b0bc8304cc093ce4e823391d6cb12c98d9ceb336f98a69a93a71b5",
+    "gen_partner": "4f4806f0f4d7b66e8ea7f94b80dbb81c202c607dc05cd9b5f8885b9900fe0c8e",
+    "gen_hours": "ce6ceb80c1998614f3d345d1c5fed989ac36624f6ad502b46e58091386a92cc6",
+    "gen_sarcasm": "6b863729b83ca35025593fa6b466f275b181a72822dcb8137e032e08a7dfe509",
+    "gen_roadmap": "a67354f3c0768758df8b2c2e12ff6e26f898aa08f1ac6dac9a771e1efec4f34e"
+  },
+  "prompt_version": "support-classifier-v2-candidate",
+  "prompt_hash": "4b941eb74b79f8d371fccef1657e905c6d6d2af83a91ad783b8f834c3b523b69",
+  "model": "recorded-fixture",
+  "provider": "replay",
+  "provider_fingerprint": "e4ad0c38b3de405f6ddfb505480bea5c868929118420a2046e1d8ef4072e8c5c",
+  "judge_policy": "recorded-rubric-0b80cd3c01b062becc7286c01707f3f38d84008d5577181725e083d9a6987778",
+  "min_summary_score": 3,
+  "engine_version": "0.1.0",
+  "cases": [
+    {
+      "case_id": "bill_duplicate",
+      "expected": {
+        "category": "billing",
+        "summary": "The customer requests a refund for a duplicate subscription charge."
+      },
+      "difficulty": "normal",
+      "prediction": {
+        "category": "account",
+        "summary": "The customer requests a refund for a duplicate subscription charge."
+      },
+      "raw": "{\"category\": \"account\", \"summary\": \"The customer requests a refund for a duplicate subscription charge.\"}",
+      "category_correct": false,
+      "passed": false,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"account\", \"summary\": \"The customer requests a refund for a duplicate subscription charge.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "bill_short",
+      "expected": {
+        "category": "billing",
+        "summary": "The customer requests a refund."
+      },
+      "difficulty": "short",
+      "prediction": {
+        "category": "billing",
+        "summary": "The customer requests a refund."
+      },
+      "raw": "{\"category\": \"billing\", \"summary\": \"The customer requests a refund.\"}",
+      "category_correct": true,
+      "passed": true,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"billing\", \"summary\": \"The customer requests a refund.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "bill_typo",
+      "expected": {
+        "category": "billing",
+        "summary": "The customer requests corrections to the invoice amount and tax."
+      },
+      "difficulty": "typos",
+      "prediction": {
+        "category": "general",
+        "summary": "The customer requests corrections to the invoice amount and tax."
+      },
+      "raw": "{\"category\": \"general\", \"summary\": \"The customer requests corrections to the invoice amount and tax.\"}",
+      "category_correct": false,
+      "passed": false,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"general\", \"summary\": \"The customer requests corrections to the invoice amount and tax.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "bill_mixed",
+      "expected": {
+        "category": "billing",
+        "summary": "The customer requests a refund after being charged twice this month."
+      },
+      "difficulty": "mixed_language",
+      "prediction": {
+        "category": "billing",
+        "summary": "The customer requests a refund after being charged twice this month."
+      },
+      "raw": "{\"category\": \"billing\", \"summary\": \"The customer requests a refund after being charged twice this month.\"}",
+      "category_correct": true,
+      "passed": true,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"billing\", \"summary\": \"The customer requests a refund after being charged twice this month.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "tech_crash",
+      "expected": {
+        "category": "technical",
+        "summary": "The customer reports a persistent crash when exporting a CSV."
+      },
+      "difficulty": "normal",
+      "prediction": {
+        "category": "general",
+        "summary": "The customer reports a persistent crash when exporting a CSV."
+      },
+      "raw": "{\"category\": \"general\", \"summary\": \"The customer reports a persistent crash when exporting a CSV.\"}",
+      "category_correct": false,
+      "passed": false,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"general\", \"summary\": \"The customer reports a persistent crash when exporting a CSV.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "tech_short",
+      "expected": {
+        "category": "technical",
+        "summary": "The customer reports an upload stuck at 99 percent."
+      },
+      "difficulty": "short",
+      "prediction": {
+        "category": "technical",
+        "summary": "The customer reports an upload stuck at 99 percent."
+      },
+      "raw": "{\"category\": \"technical\", \"summary\": \"The customer reports an upload stuck at 99 percent.\"}",
+      "category_correct": true,
+      "passed": true,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"technical\", \"summary\": \"The customer reports an upload stuck at 99 percent.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "tech_injection",
+      "expected": {
+        "category": "technical",
+        "summary": "The customer reports an export failure."
+      },
+      "difficulty": "adversarial",
+      "prediction": {
+        "category": "technical",
+        "summary": "The customer reports an export failure."
+      },
+      "raw": "{\"category\": \"technical\", \"summary\": \"The customer reports an export failure.\"}",
+      "category_correct": true,
+      "passed": true,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"technical\", \"summary\": \"The customer reports an export failure.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "tech_sarcasm",
+      "expected": {
+        "category": "technical",
+        "summary": "The customer reports blank dashboards after an update."
+      },
+      "difficulty": "sarcastic",
+      "prediction": {
+        "category": "technical",
+        "summary": "The customer reports blank dashboards after an update."
+      },
+      "raw": "{\"category\": \"technical\", \"summary\": \"The customer reports blank dashboards after an update.\"}",
+      "category_correct": true,
+      "passed": true,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"technical\", \"summary\": \"The customer reports blank dashboards after an update.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "acct_locked",
+      "expected": {
+        "category": "account",
+        "summary": "The customer needs help unlocking an account after failed sign-in attempts."
+      },
+      "difficulty": "normal",
+      "prediction": {
+        "category": "technical",
+        "summary": "The customer needs help unlocking an account after failed sign-in attempts."
+      },
+      "raw": "{\"category\": \"technical\", \"summary\": \"The customer needs help unlocking an account after failed sign-in attempts.\"}",
+      "category_correct": false,
+      "passed": false,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"technical\", \"summary\": \"The customer needs help unlocking an account after failed sign-in attempts.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "acct_email",
+      "expected": {
+        "category": "account",
+        "summary": "The customer requests an account email address update."
+      },
+      "difficulty": "normal",
+      "prediction": {
+        "category": "account",
+        "summary": "The customer requests an account email address update."
+      },
+      "raw": "{\"category\": \"account\", \"summary\": \"The customer requests an account email address update.\"}",
+      "category_correct": true,
+      "passed": true,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"account\", \"summary\": \"The customer requests an account email address update.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "acct_mixed",
+      "expected": {
+        "category": "account",
+        "summary": "The customer cannot sign in because the password reset link expired."
+      },
+      "difficulty": "mixed_language",
+      "prediction": {
+        "category": "account",
+        "summary": "The customer cannot sign in because the password reset link expired."
+      },
+      "raw": "{\"category\": \"account\", \"summary\": \"The customer cannot sign in because the password reset link expired.\"}",
+      "category_correct": true,
+      "passed": true,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"account\", \"summary\": \"The customer cannot sign in because the password reset link expired.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "acct_cancel",
+      "expected": {
+        "category": "account",
+        "summary": "The customer requests end-of-month account cancellation without a refund."
+      },
+      "difficulty": "ambiguous",
+      "prediction": {
+        "category": "account",
+        "summary": "The customer requests end-of-month account cancellation without a refund."
+      },
+      "raw": "{\"category\": \"account\", \"summary\": \"The customer requests end-of-month account cancellation without a refund.\"}",
+      "category_correct": true,
+      "passed": true,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"account\", \"summary\": \"The customer requests end-of-month account cancellation without a refund.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "gen_partner",
+      "expected": {
+        "category": "general",
+        "summary": "The customer asks whom to contact about an integration partnership."
+      },
+      "difficulty": "normal",
+      "prediction": {
+        "category": "technical",
+        "summary": "The customer asks whom to contact about an integration partnership."
+      },
+      "raw": "{\"category\": \"technical\", \"summary\": \"The customer asks whom to contact about an integration partnership.\"}",
+      "category_correct": false,
+      "passed": false,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"technical\", \"summary\": \"The customer asks whom to contact about an integration partnership.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "gen_hours",
+      "expected": {
+        "category": "general",
+        "summary": "The customer asks about Sunday support availability."
+      },
+      "difficulty": "normal",
+      "prediction": {
+        "category": "general",
+        "summary": "The customer asks about Sunday support availability."
+      },
+      "raw": "{\"category\": \"general\", \"summary\": \"The customer asks about Sunday support availability.\"}",
+      "category_correct": true,
+      "passed": true,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"general\", \"summary\": \"The customer asks about Sunday support availability.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "gen_sarcasm",
+      "expected": {
+        "category": "general",
+        "summary": "The customer complains about repeated newsletter announcements."
+      },
+      "difficulty": "sarcastic",
+      "prediction": {
+        "category": "technical",
+        "summary": "The customer complains about repeated newsletter announcements."
+      },
+      "raw": "{\"category\": \"technical\", \"summary\": \"The customer complains about repeated newsletter announcements.\"}",
+      "category_correct": false,
+      "passed": false,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"technical\", \"summary\": \"The customer complains about repeated newsletter announcements.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    },
+    {
+      "case_id": "gen_roadmap",
+      "expected": {
+        "category": "general",
+        "summary": "The customer asks about plans for a desktop version next year."
+      },
+      "difficulty": "normal",
+      "prediction": {
+        "category": "general",
+        "summary": "The customer asks about plans for a desktop version next year."
+      },
+      "raw": "{\"category\": \"general\", \"summary\": \"The customer asks about plans for a desktop version next year.\"}",
+      "category_correct": true,
+      "passed": true,
+      "summary_score": 5,
+      "summary_reason": "Scripted fixture summary matches its fixture reference; not a live judgment.",
+      "classification": {
+        "raw": "{\"category\": \"general\", \"summary\": \"The customer asks about plans for a desktop version next year.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "judging": {
+        "raw": "{\"score\": 5, \"reason\": \"Scripted fixture summary matches its fixture reference; not a live judgment.\"}",
+        "usage": null,
+        "elapsed_ms": null,
+        "response_id": null,
+        "resolved_model": null,
+        "attempts": 0
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "n": 16,
+    "passed": 10,
+    "pass_rate": 0.625,
+    "category_accuracy": 0.625,
+    "pass_rate_wilson_95": [
+      0.386410405455033,
+      0.81518767441136
+    ],
+    "errors": 0,
+    "summary_mean": 5,
+    "judged_cases": 16,
+    "classification_latency_samples": 0,
+    "classification_p50_ms": null,
+    "classification_p95_ms": null,
+    "usage_observations": 0,
+    "total_observations": 32,
+    "input_tokens": null,
+    "output_tokens": null,
+    "usage_complete": false,
+    "requests_attempted": 0,
+    "per_category": {
+      "billing": {
+        "n": 4,
+        "accuracy": 0.5
+      },
+      "technical": {
+        "n": 4,
+        "accuracy": 0.75
+      },
+      "account": {
+        "n": 4,
+        "accuracy": 0.75
+      },
+      "general": {
+        "n": 4,
+        "accuracy": 0.5
+      }
+    }
+  }
+}
