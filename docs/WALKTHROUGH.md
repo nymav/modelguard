@@ -12,3 +12,17 @@
   needs explicit configuration; don't stage a fake received alert.
 - 2:35–3:00: Show the human-reviewed dataset protocol, explicit live model/judge
   IDs, request cap, CI exit codes and the remaining live-validation requirements.
+
+## Actual offline deliverable — 0.2.0
+
+A three-minute 1920×1080 captioned MP4 was rendered from actual CLI output,
+regression/recovery report screenshots, the controlled drift fixture and the
+real private PR's blocked bot comment. It has no audio and is not a Loom upload.
+The video explicitly identifies scripted outputs, absent human gold, zero paid
+calls and no delivered Slack alert. The live demonstration remains pending the
+owner-supplied prerequisites.
+
+Reproducible script: `scripts/render_walkthrough.py`; dev-only dependencies are
+Pillow and imageio-ffmpeg. Browser screenshot assets and a chapter manifest are
+under `artifacts/walkthrough-assets/`. The exported video is delivered separately
+as `ModelGuard_P01_Offline_Walkthrough.mp4`.
