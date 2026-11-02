@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "provenance": "synthetic_fixture",
+  "prompt_hash": "4b941eb74b79f8d371fccef1657e905c6d6d2af83a91ad783b8f834c3b523b69",
+  "description": "Scripted fixture responses. Scores are fixture values, not measured LLM judgments.",
+  "cases": {
+    "bill_duplicate": {
+      "email_hash": "70f63f29d9ecc770dcdef1853e748009ed5d3a1753937f58c21b8d3fea938e95",
+      "output": {
+        "category": "account",
+        "summary": "The customer requests a refund for a duplicate subscription charge."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "bill_short": {
+      "email_hash": "9614454ff9236753295f9905dd52fc40fd6ddcf5121e9e2dbf0be6e0a03c6e48",
+      "output": {
+        "category": "billing",
+        "summary": "The customer requests a refund."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "bill_typo": {
+      "email_hash": "994d62685b41eae55a2dec18442220f7496dd109dc4852925b12d3d95fd67764",
+      "output": {
+        "category": "general",
+        "summary": "The customer requests corrections to the invoice amount and tax."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "bill_mixed": {
+      "email_hash": "d6185d3e75468edd92919dfa5fb653d5b7f96ef56b57f2b324fbd26706ef5e66",
+      "output": {
+        "category": "billing",
+        "summary": "The customer requests a refund after being charged twice this month."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "tech_crash": {
+      "email_hash": "c48256cc5db0665ce2fdea6e8c28c8e2555a01626832a8589e0f47ef7618d5db",
+      "output": {
+        "category": "general",
+        "summary": "The customer reports a persistent crash when exporting a CSV."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "tech_short": {
+      "email_hash": "257ff5bbf70b40de1f09588782eafb3a365056f3fc170c9267d06082f91caf95",
+      "output": {
+        "category": "technical",
+        "summary": "The customer reports an upload stuck at 99 percent."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "tech_injection": {
+      "email_hash": "f58d24943fb4279ce85f9793dfa89d346f7f57624b32375319b5b0e3a741e6fa",
+      "output": {
+        "category": "technical",
+        "summary": "The customer reports an export failure."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "tech_sarcasm": {
+      "email_hash": "538a9a5b404de7e23c16c004226e1e9f1cddba847f236d172f062d329e233e71",
+      "output": {
+        "category": "technical",
+        "summary": "The customer reports blank dashboards after an update."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "acct_locked": {
+      "email_hash": "f75e8ce4fff31c7f29edd268e7c771719cd707f2bdb94e3c52d9047cfa240313",
+      "output": {
+        "category": "technical",
+        "summary": "The customer needs help unlocking an account after failed sign-in attempts."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "acct_email": {
+      "email_hash": "06c0dcbaa544283d488f8e29ffaec026a93543fee2f5309042563af8ee3cdb42",
+      "output": {
+        "category": "account",
+        "summary": "The customer requests an account email address update."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "acct_mixed": {
+      "email_hash": "1846dd0d71e7a8f586c4617efebe64be3263201c3389de1dee05b13eacd57dad",
+      "output": {
+        "category": "account",
+        "summary": "The customer cannot sign in because the password reset link expired."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "acct_cancel": {
+      "email_hash": "e9126170077bda70046b39284448f0d8baa4b651c83e7d57a12045eac3a4f2db",
+      "output": {
+        "category": "account",
+        "summary": "The customer requests end-of-month account cancellation without a refund."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "gen_partner": {
+      "email_hash": "c0c13bd0e08773a788f5c811ebee775c9d2ce753c98b3a0ab950ba021b77d6e1",
+      "output": {
+        "category": "technical",
+        "summary": "The customer asks whom to contact about an integration partnership."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "gen_hours": {
+      "email_hash": "cafd59042480556ce390404f38bb3d661e45d6a6982bd5c000184a01b5fdf9e7",
+      "output": {
+        "category": "general",
+        "summary": "The customer asks about Sunday support availability."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "gen_sarcasm": {
+      "email_hash": "fe1dabdd147017fe801f771689bbc0c7bc60090918d77bde46024180f96e9c9e",
+      "output": {
+        "category": "technical",
+        "summary": "The customer complains about repeated newsletter announcements."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    },
+    "gen_roadmap": {
+      "email_hash": "30985909953644191206263d78d0dd2495e06d0f0d6549280e95461435938750",
+      "output": {
+        "category": "general",
+        "summary": "The customer asks about plans for a desktop version next year."
+      },
+      "judge": {
+        "score": 5,
+        "reason": "Scripted fixture summary matches its fixture reference; not a live judgment."
+      }
+    }
+  }
+}
