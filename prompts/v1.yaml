@@ -13,3 +13,5 @@ few_shot:
       category: billing
       summary: "The customer requests a receipt copy."
 max_output_tokens: 500
+
+# Integration readiness probe: no paid provider calls are enabled.
