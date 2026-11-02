@@ -26,6 +26,7 @@ class Case(Strict):
     notes: str = Field(min_length=1, max_length=3000)
     reviewed_by: str | None = None
     reviewed_at: str | None = None
+    reviewed_content_hash: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
 
 class Dataset(Strict):
     schema_version: Literal[1]
