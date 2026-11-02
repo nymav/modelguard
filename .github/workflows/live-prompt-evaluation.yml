@@ -1,0 +1,80 @@
+name: ModelGuard live quality gate
+on:
+  pull_request:
+    paths: ['prompts/**', 'data/golden.json']
+  workflow_dispatch:
+permissions:
+  contents: read
+  pull-requests: write
+concurrency:
+  group: modelguard-live-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  quality:
+    name: Live quality evaluation
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout trusted evaluation engine
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.base.sha || github.sha }}
+          path: engine
+          persist-credentials: false
+      - name: Checkout candidate as Git data only
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: subject
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install trusted engine dependencies
+        run: |
+          python -m pip install -r engine/requirements.lock
+          python -m pip install --no-deps --no-build-isolation ./engine
+      - name: Restore aggregate history from trusted default-branch runs
+        uses: actions/cache/restore@v6
+        with:
+          path: artifacts/live-evaluation/history-points.json
+          key: modelguard-series-${{ github.run_id }}
+          restore-keys: modelguard-series-
+      - name: Evaluate baseline and candidate, then update PR summary
+        env:
+          TARGET_REPOSITORY: ${{ github.workspace }}/subject
+          MODELGUARD_OUTPUT: ${{ github.workspace }}/artifacts/live-evaluation
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          PROMPT_PATH: ${{ vars.MODELGUARD_PROMPT_PATH || 'prompts/v1.yaml' }}
+          MODELGUARD_LIVE_ENABLED: ${{ vars.MODELGUARD_LIVE_ENABLED }}
+          MODEL_ID: ${{ vars.MODELGUARD_MODEL_ID }}
+          JUDGE_MODEL_ID: ${{ vars.MODELGUARD_JUDGE_MODEL_ID }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MODELGUARD_POST_COMMENT: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && 'true' || 'false' }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_TOKEN: ${{ github.token }}
+          MODELGUARD_REPORT_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: python engine/scripts/live_gate.py
+      - name: Persist aggregate history from manual default-branch runs only
+        if: always() && github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && hashFiles('artifacts/live-evaluation/history-points.json') != '' && hashFiles('artifacts/live-evaluation/comparison.json') != ''
+        uses: actions/cache/save@v6
+        with:
+          path: artifacts/live-evaluation/history-points.json
+          key: modelguard-series-${{ github.run_id }}
+      - name: Optional explicit Slack delivery
+        if: always() && vars.MODELGUARD_SEND_SLACK == 'true'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          if [ -f artifacts/live-evaluation/slack-payload.json ]; then
+            modelguard notify --payload artifacts/live-evaluation/slack-payload.json --send-slack
+          fi
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: live-evaluation-report
+          path: artifacts/live-evaluation/
+          if-no-files-found: warn
+          retention-days: 7
