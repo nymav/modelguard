@@ -4,7 +4,7 @@ ModelGuard compares a candidate LLM prompt/model with a pinned baseline on the
 same support-email cases. It reports category accuracy, summary ratings, paired
 regressions/improvements, observed latency and token use, and rolling degradation.
 SQLite retains immutable runs; escaped HTML and JSON retain the evidence behind
-CI exit codes. **0.1.0 is a locally validated pilot, not a live production deployment.**
+CI exit codes. **0.2.0 is a locally validated pilot, not a live production deployment.**
 
 ## Run the included demonstration
 
@@ -30,8 +30,10 @@ No API key, Slack delivery, PR comment or paid request is used by this demo.
 
 ## Evaluate a real prompt
 
-First, people must independently curate and review 50–100 cases using
-`data/golden.template.json` and `docs/DATASET_PROTOCOL.md`. The empty template
+First, people must independently curate and review 50–100 cases. The new
+`dataset-template`, `dataset-import`, `dataset-review` and `dataset-freeze` commands
+provide blank authoring rows, per-case human decisions and content-bound approval.
+See `docs/ACTIVATION.md` and `docs/DATASET_PROTOCOL.md`. The empty template
 intentionally fails validation. There is **no approved golden dataset included**.
 Do not simply rename the synthetic fixtures as human-reviewed ground truth.
 
@@ -108,8 +110,10 @@ Only official Slack incoming webhooks are accepted; redirects are refused. Alert
 contain counts and provenance, not raw emails. `MODELGUARD_REPORT_URL` optionally
 adds an HTTPS report link. The demo saves a payload; it does not pretend an alert
 was sent. GitHub Actions currently publishes a run summary and report artifacts.
-PR comment writes and live prompt gating remain deployment work, explicitly
-recorded in `docs/REQUIREMENTS.md`.
+The live quality workflow and guarded bot-owned PR comment updates are implemented.
+They report **blocked** until owner-supplied gold, credentials and model IDs are
+ready. Required merge protection is unavailable on the observed private-repo plan.
+See `docs/ACTIVATION.md` for actual setup and limitations.
 
 ## Validation and container operation
 
@@ -117,9 +121,9 @@ recorded in `docs/REQUIREMENTS.md`.
 python -m unittest discover -s tests -v
 modelguard demo --output artifacts/demo
 python scripts/assert_demo.py artifacts/demo/demo.json
-docker build -t modelguard:0.1.0 .
+docker build -t modelguard:0.2.0 .
 docker run --rm --network none --read-only \
-  --tmpfs /results:rw,uid=10001 --tmpfs /tmp modelguard:0.1.0
+  --tmpfs /results:rw,uid=10001 --tmpfs /tmp modelguard:0.2.0
 ```
 
 The image runs as UID 10001 and contains prompts, fixtures and the evaluator.
