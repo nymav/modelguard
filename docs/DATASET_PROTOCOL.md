@@ -42,3 +42,9 @@ Case schema:
 An empty invalid template is provided rather than fabricating 50 human-reviewed
 cases. Actual production effectiveness remains unevaluated until this work and
 explicit live runs are completed.
+
+## Authoring tools
+
+See `ACTIVATION.md` for the blank CSV → review queue → individual terminal
+approval → frozen gold flow. Approval stores a content hash; changing the case
+invalidates that review. The model does not approve its own fixtures.
