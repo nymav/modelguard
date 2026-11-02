@@ -1,3 +1,34 @@
+# Current completion pass — 0.2.0 / 3 November 2026
+
+93 tests pass locally and in the corrected Docker image with networking disabled.
+The new tests exercise blank authoring input, content-bound review, edited-case
+invalidation, frozen gold rejection, same-repo/stale-head PR guards, actual paired
+Git revision evaluation with injected test responses, new versioned prompt
+selection, and aggregate-only persistent trend history.
+
+A real private [draft integration PR](https://github.com/nymav/modelguard/pull/1)
+triggered the live workflow. It correctly failed readiness without any paid call
+and created a bot summary. A second run updated the same comment ID; only one
+marker comment exists. The normal Python matrix and Docker checks passed after
+the newly exercised Git dependency was added to the container. Required merge
+protection was checked separately: GitHub returned 403 because the current plan
+does not support protected branches on this private repository. No public access
+or paid upgrade was performed.
+
+The actual blocked summary is [here](https://github.com/nymav/modelguard/pull/1#issuecomment-6587789932).
+A three-minute silent captioned MP4 uses actual CLI outputs, report screenshots,
+scripted drift results and this remote integration evidence. Its 180-second
+length and full decode were verified. It is an offline evidence walkthrough,
+not a fabricated live-model/Slack demo or Loom upload.
+
+`artifacts/activation/VALIDATION_0.2.0.json` records this pass. The remaining
+requirements are actual human gold, configured provider/judge validation, real
+Slack delivery, eligible private-repo branch protection and a live walkthrough.
+The owner confirmed neither service credential nor a reviewed dataset is ready.
+See `ACTIVATION.md` for the exact sequence and secure configuration fields.
+
+---
+
 # Validation record — 3 November 2026
 
 ## Observed
