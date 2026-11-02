@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "version": "replace-with-your-reviewed-version",
+  "provenance": "human_reviewed",
+  "description": "Template only. Add 50–100 cases independently written and checked by people. This empty file is intentionally not a valid dataset.",
+  "cases": []
+}
