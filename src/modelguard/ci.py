@@ -27,6 +27,18 @@ def read_blob(repository:Path,sha:str,path:str)->bytes:
     if result.returncode:raise GuardError('Unable to read immutable Git input')
     return result.stdout
 
+def select_prompt_paths(repository:Path,base:str,head:str,fallback:str):
+    for sha in (base,head):
+        if not re.fullmatch(r'[a-f0-9]{40,64}',sha):raise GuardError('Full immutable SHAs required')
+    changed=subprocess.run(['git','diff','--no-ext-diff','--name-only',base,head,'--','prompts'],cwd=repository,capture_output=True,timeout=20)
+    if changed.returncode:raise GuardError('Unable to discover changed prompt files')
+    paths=[p for p in changed.stdout.decode().splitlines() if p.endswith(('.yaml','.yml'))]
+    if len(paths)>1:raise GuardError('Multiple prompts changed; evaluate one candidate prompt per PR')
+    candidate=paths[0] if paths else fallback
+    if not re.fullmatch(r'prompts/[A-Za-z0-9_.-]+\.ya?ml',candidate):raise GuardError('Unsupported changed prompt path')
+    exists=subprocess.run(['git','cat-file','-e',base+':'+candidate],cwd=repository,capture_output=True,timeout=20).returncode==0
+    return (candidate if exists else fallback),candidate
+
 def prerequisites(key:str,model:str,judge_model:str,enabled:bool)->list[str]:
     missing=[]
     if not enabled:missing.append('Live evaluation is not enabled by the repository owner')
@@ -39,7 +51,8 @@ async def evaluate_pair(repository:Path,base:str,head:str,prompt_path:str,datase
                         model:str,judge_model:str,key:str,*,enabled:bool,max_requests:int=800,provider_factory=None):
     missing=prerequisites(key,model,judge_model,enabled)
     if missing:raise GuardError('; '.join(missing))
-    base_prompt=read_blob(repository,base,prompt_path);head_prompt=read_blob(repository,head,prompt_path)
+    base_path,candidate_path=select_prompt_paths(repository,base,head,prompt_path)
+    base_prompt=read_blob(repository,base,base_path);head_prompt=read_blob(repository,head,candidate_path)
     raw_gold=read_blob(repository,base,dataset_path)
     if raw_gold!=read_blob(repository,head,dataset_path):raise GuardError('Golden dataset changed; review and freeze a new baseline separately')
     with TemporaryDirectory(prefix='modelguard-ci-inputs-') as folder:
@@ -56,6 +69,7 @@ async def evaluate_pair(repository:Path,base:str,head:str,prompt_path:str,datase
         store.add(baseline);store.add(candidate);thresholds=thresholds_from_env()
         if baseline.summary['errors']:raise GuardError('Baseline provider/judge failed; no valid comparison is available')
         result=compare(baseline,candidate,thresholds)
+        result['source']={'base_sha':base,'head_sha':head,'baseline_prompt':base_path,'candidate_prompt':candidate_path}
         series=record_point(output/'history-points.json',candidate)
         drift=point_drift(series,candidate,thresholds)
         if drift['status']=='warning' and result['status']=='pass':result['status']='warning'
